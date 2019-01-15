@@ -31,6 +31,11 @@
 
         var modifiedControlId = this.fieldValue.data("modified");
         if (modifiedControlId && modifiedControlId !== this.controlId()) {
+            //Fix for bug #292970
+            if (this.fieldValue.val()) {
+                this.refreshValue();
+            }
+            //
             this.setReadOnly();
             var notification = new Sitecore.PageModes.Notification("fieldchanges",
                 Sitecore.PageModes.Texts.ContentWasEdited,
